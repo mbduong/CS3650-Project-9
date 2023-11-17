@@ -1,0 +1,31 @@
+class Random {
+  field int seed;
+
+  constructor Random new(int num) {
+    let seed = num;
+    return this;
+  }
+
+  // calculates a random number 0-10 from predefined seed: 28
+  method int getAnswer() {
+    var int temp1;
+    var int temp2;
+    var int answer;
+    let temp1 = (seed * 27149 + 9043);
+    let temp2 = mod(temp1, 18813);
+    let answer = mod(seed, 11);
+    return answer;
+  }
+
+  method int mod(int x, int y) {
+    var int q;
+    
+    let q = Math.divide(x, y);
+    return x - (q * y);
+  }
+
+  method void dispose() {
+    do Memory.deAlloc(this);
+    return;
+  }
+}

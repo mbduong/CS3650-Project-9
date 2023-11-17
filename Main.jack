@@ -1,0 +1,51 @@
+class Main {
+  function void main() {
+    var int guess;  // user's guess
+    var int tries;  // num of tries
+    var int answer; // correct answer
+    var boolean correct;
+    var Random random;
+
+    // print menu
+    do Output.printString("Welcome to the Random Number Guessing Game!");
+    do Output.println();
+    do Output.printString("Guess the secret number between 0 and 10.");
+    do Output.println();
+
+    // create the random number
+    let random = Random.new(28);
+    let answer = random.getAnswer();
+
+    // set up initial state
+    let tries = 0;
+    let correct = false;
+
+    // check guess with answer
+    while (~correct) {
+      let guess = Keyboard.readInt("Enter your guess: "); // get user input
+      let tries = tries + 1;
+
+      // if guess is correct
+      if (guess = answer) {
+
+        let correct = true;
+        // print correct prompt
+        do Output.printString("Congratulations! You guessed the correct number in ");
+        do Output.printInt(tries);
+        do Output.printString(" tries.");
+        do Output.println();
+      } 
+      if (guess < answer) { // if guess is below answer
+        do Output.printString("Too low. Try again!");
+        do Output.println();
+      } 
+      if (guess > answer) {  // if guess is above answer
+        do Output.printString("Too high. Try again!");
+        do Output.println();
+      }
+      do Output.println();
+    }
+    do random.dispose();
+    return;
+  }
+}
